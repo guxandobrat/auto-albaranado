@@ -28,1311 +28,911 @@
             top: 0;
             z-index: 100;
         }
-
-        .topbar .brand {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .topbar .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-        }
-
+        .topbar .brand { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+        .topbar .user-info { display: flex; align-items: center; gap: 12px; font-size: 14px; }
         .topbar .user-info .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
+            width: 32px; height: 32px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 13px;
         }
-
         .topbar .logout-btn {
-            background: rgba(255,255,255,0.15);
-            border: none;
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
+            background: rgba(255,255,255,0.15); border: none; color: #fff;
+            padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px;
         }
-
         .topbar .logout-btn:hover { background: rgba(255,255,255,0.25); }
 
         /* ===== BREADCRUMB ===== */
         .breadcrumb {
-            max-width: 1100px;
-            margin: 16px auto 0;
-            padding: 0 24px;
-            font-size: 13px;
-            color: #888;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            max-width: 1100px; margin: 16px auto 0; padding: 0 24px;
+            font-size: 13px; color: #888; display: flex; align-items: center; gap: 8px;
         }
-
-        .breadcrumb a {
-            color: #1a73e8;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
+        .breadcrumb a { color: #1a73e8; text-decoration: none; cursor: pointer; }
         .breadcrumb a:hover { text-decoration: underline; }
-
         .breadcrumb .sep { color: #ccc; }
-
         .breadcrumb .current { color: #333; font-weight: 600; }
 
-        /* ===== SCREEN CONTAINER ===== */
+        /* ===== SCREENS ===== */
         .screen { display: none; }
         .screen.active { display: block; }
+        .page-content { max-width: 1100px; margin: 0 auto; padding: 24px; }
 
-        .page-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 24px;
-        }
-
-        /* ===== SCREEN 1: LOGIN ===== */
-        .login-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 56px);
-        }
-
+        /* ===== LOGIN ===== */
+        .login-wrapper { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 56px); }
         .login-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 48px 40px;
-            width: 420px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            text-align: center;
+            background: #fff; border-radius: 12px; padding: 48px 40px;
+            width: 420px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); text-align: center;
         }
-
         .login-card .logo {
-            width: 72px;
-            height: 72px;
-            border-radius: 14px;
-            background: #1a73e8;
-            color: #fff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 20px;
+            width: 72px; height: 72px; border-radius: 14px; background: #1a73e8;
+            color: #fff; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: 700; margin-bottom: 20px;
         }
-
         .login-card h2 { font-size: 24px; margin-bottom: 6px; }
         .login-card .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
 
-        .form-group {
-            width: 100%;
-            margin-bottom: 18px;
-            text-align: left;
-        }
-
+        .form-group { width: 100%; margin-bottom: 18px; text-align: left; }
         .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            display: block; font-size: 12px; font-weight: 600; color: #555;
+            margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
         }
-
         .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            background: #fafafa;
-            transition: border-color 0.2s;
+            width: 100%; padding: 12px 14px; border: 1.5px solid #ddd;
+            border-radius: 8px; font-size: 14px; background: #fafafa; transition: border-color 0.2s;
         }
-
         .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #1a73e8;
-            background: #fff;
+            outline: none; border-color: #1a73e8; background: #fff;
         }
 
         /* ===== BUTTONS ===== */
         .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px;
+            font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
         }
-
         .btn-primary { background: #1a73e8; color: #fff; }
         .btn-primary:hover { background: #1557b0; }
         .btn-primary:disabled { background: #b0c4de; cursor: not-allowed; }
-
         .btn-success { background: #34a853; color: #fff; }
         .btn-success:hover { background: #2d8f47; }
         .btn-success:disabled { background: #a8d5b8; cursor: not-allowed; }
-
         .btn-outline { background: #fff; color: #1a73e8; border: 1.5px solid #1a73e8; }
         .btn-outline:hover { background: #e8f0fe; }
-
         .btn-sm { padding: 8px 16px; font-size: 12px; }
         .btn-block { width: 100%; }
         .btn-lg { padding: 14px 32px; font-size: 16px; }
-
-        /* ===== SCREEN 2: PEDIDO DETAIL ===== */
-        .pedido-layout {
-            display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 24px;
-            align-items: start;
+        .btn-back {
+            background: none; border: none; color: #1a73e8; font-size: 14px;
+            cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
         }
+        .btn-back:hover { text-decoration: underline; }
 
-        /* Sidebar - Pedido info */
-        .pedido-sidebar {
-            background: #fff;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 80px;
-        }
-
-        .pedido-sidebar .pedido-id {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a73e8;
-            margin-bottom: 4px;
-        }
-
-        .pedido-sidebar .pedido-subtitle {
-            font-size: 13px;
-            color: #888;
-            margin-bottom: 16px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            font-size: 14px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .info-row:last-child { border-bottom: none; }
-        .info-row .label { color: #888; }
-        .info-row .value { font-weight: 600; color: #333; }
-
+        /* ===== STATUS BADGES ===== */
         .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
+            display: inline-block; padding: 4px 12px; border-radius: 12px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
         }
-
         .status-badge.pending { background: #fff3e0; color: #e65100; }
         .status-badge.partial { background: #e8f0fe; color: #1a73e8; }
         .status-badge.complete { background: #e8f5e9; color: #2e7d32; }
 
-        /* Main area */
-        .pedido-main {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            overflow: hidden;
+        /* ===== SEARCH BAR ===== */
+        .search-bar {
+            display: flex; align-items: stretch; gap: 0; margin-bottom: 24px;
+            border: 2px solid #ddd; border-radius: 10px; overflow: hidden;
+            background: #fff; transition: border-color 0.2s;
         }
-
-        .pedido-main-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .search-bar:focus-within { border-color: #1a73e8; }
+        .search-category {
+            padding: 12px 14px; border: none; font-size: 13px; font-weight: 700;
+            cursor: pointer; background: #f5f5f5; min-width: 160px;
+            border-right: 2px solid #ddd; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 10px center;
+            padding-right: 28px;
         }
-
-        .pedido-main-header h2 {
-            font-size: 18px;
-            color: #333;
+        .search-category option { font-weight: 600; padding: 8px; }
+        .search-category option[value="articulo"] { color: #e65100; }
+        .search-category option[value="pedido"] { color: #1a73e8; }
+        .search-category option[value="codigo"] { color: #7b1fa2; }
+        .search-input {
+            flex: 1; padding: 12px 16px; border: none; font-size: 14px; outline: none;
         }
-
-        .pedido-main-body {
-            padding: 24px;
+        .search-btn {
+            padding: 12px 20px; background: #1a73e8; color: #fff; border: none;
+            cursor: pointer; font-size: 16px;
         }
+        .search-btn:hover { background: #1557b0; }
 
-        /* ===== ADD ALBARAN BUTTON (disabled state) ===== */
-        .albaran-form-area { position: relative; }
-
-        .albaran-form-area.disabled .albaran-form-content {
-            opacity: 0.3;
-            pointer-events: none;
-            user-select: none;
-            filter: grayscale(0.5);
+        /* ===== FILTER BUTTONS ===== */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 20px; align-items: center; }
+        .filter-btn {
+            padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+            cursor: pointer; border: 1.5px solid #ddd; background: #fff; color: #555;
+            transition: all 0.2s;
         }
-
-        .add-albaran-zone {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .btn-add-albaran {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            background: #1a73e8;
-            color: #fff;
-            border: 2px dashed rgba(255,255,255,0.5);
-            outline: 3px solid #1a73e8;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s;
-            box-shadow: 0 4px 16px rgba(26,115,232,0.3);
-        }
-
-        .btn-add-albaran:hover {
-            background: #1557b0;
-            outline-color: #1557b0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(26,115,232,0.4);
-        }
-
-        .btn-add-albaran .plus-icon { font-size: 22px; }
-        .btn-add-albaran.hidden { display: none; }
-
-        .active-albaran-badge {
-            display: none;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-            padding: 10px 20px;
-            background: #e8f0fe;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a73e8;
-            margin-bottom: 16px;
-        }
-
-        .active-albaran-badge.visible { display: flex; }
-
-        /* Date row */
-        .date-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .date-row input[type="date"] {
-            padding: 10px 14px;
-            border: 1.5px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            width: 220px;
-        }
-
-        .date-row input[type="date"]:focus {
-            outline: none;
-            border-color: #1a73e8;
-        }
-
-        .btn-oggi {
-            background: #ff9800;
-            color: #fff;
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-oggi:hover { background: #e68900; }
-
-        /* ===== ITEMS TABLE ===== */
-        .items-table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .items-table-header h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .items-table {
-            width: 100%;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .item-row {
-            display: grid;
-            grid-template-columns: 40px 1fr 100px 50px;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background 0.15s;
-        }
-
-        .item-row:last-child { border-bottom: none; }
-        .item-row:hover { background: #fafbfc; }
-
-        .item-row-head {
-            background: #f8f9fa;
-            font-size: 11px;
-            font-weight: 700;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 10px 16px;
-        }
-
-        .item-row-head:hover { background: #f8f9fa; }
-
-        .item-checkbox {
-            width: 20px;
-            height: 20px;
-            accent-color: #1a73e8;
-            cursor: pointer;
-        }
-
-        .item-info { min-width: 0; }
-
-        .item-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .item-detail {
-            font-size: 12px;
-            color: #888;
-            margin-top: 2px;
-        }
-
-        .item-qty-input {
-            width: 90px;
-            padding: 8px 10px;
-            border: 1.5px solid #ddd;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            background: #fafafa;
-        }
-
-        .item-qty-input:focus {
-            outline: none;
-            border-color: #1a73e8;
-            background: #fff;
-        }
-
-        .item-qty-input.has-value {
-            border-color: #34a853;
-            background: #f0faf3;
-        }
-
-        .item-unit {
-            font-size: 12px;
-            color: #888;
-        }
-
-        /* Summary + actions bar */
-        .form-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 24px;
-            border-top: 1px solid #eee;
-            background: #fafbfc;
-        }
-
-        .summary-inline {
-            font-size: 14px;
-            color: #555;
-        }
-
-        .summary-inline strong {
-            color: #1a73e8;
-            font-size: 16px;
-        }
-
-        .form-actions .actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        /* ===== SCREEN 3: ALBARAN RESULT ===== */
-        .result-layout {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .result-message {
-            background: #fff;
-            border-radius: 12px;
-            padding: 32px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            text-align: center;
-        }
-
-        .result-message .checkmark {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: #e8f5e9;
-            color: #34a853;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
-
-        .result-message h2 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .result-message p {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 24px;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .note-box {
-            margin-top: 20px;
-            padding: 14px 18px;
-            background: #fff8e1;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #795548;
-            text-align: left;
-        }
-
-        /* Albaran document */
-        .albaran-doc {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            overflow: hidden;
-        }
-
-        .albaran-doc .doc-title-bar {
-            background: #333;
-            color: #fff;
-            padding: 16px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .albaran-doc .doc-body {
-            padding: 24px;
-        }
-
-        .albaran-doc .doc-header-info {
-            text-align: center;
-            padding-bottom: 16px;
-            margin-bottom: 16px;
-            border-bottom: 2px solid #333;
-        }
-
-        .albaran-doc .doc-header-info h3 {
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .albaran-doc .doc-header-info .doc-num {
-            font-size: 13px;
-            color: #666;
-            margin-top: 4px;
-        }
-
-        .albaran-doc .doc-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            padding: 5px 0;
-        }
-
-        .albaran-doc .doc-items {
-            margin: 16px 0;
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .albaran-doc .doc-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            font-size: 13px;
-            border-bottom: 1px dashed #e0e0e0;
-        }
-
-        .albaran-doc .doc-item:last-child { border-bottom: none; }
-
-        .albaran-doc .doc-total {
-            text-align: right;
-            font-size: 15px;
-            font-weight: 700;
-            padding-top: 10px;
-        }
-
-        /* ===== NOTES SECTION ===== */
-        .notes-section {
-            max-width: 1100px;
-            margin: 32px auto;
-            padding: 0 24px;
-        }
-
-        .notes-section h3 {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #ddd;
-        }
-
-        .notes-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .note-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #1a73e8;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .note-card h4 {
-            font-size: 14px;
-            color: #1a73e8;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .note-card p { font-size: 13px; color: #555; line-height: 1.5; }
-        .note-card.factura { border-left-color: #34a853; }
-        .note-card.factura h4 { color: #34a853; }
-
-        /* ===== STEP INDICATOR ===== */
-        .steps {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 28px;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #aaa;
-        }
-
-        .step.active { color: #1a73e8; font-weight: 600; }
-        .step.done { color: #34a853; }
-
-        .step .step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .step.active .step-num { border-color: #1a73e8; background: #1a73e8; color: #fff; }
-        .step.done .step-num { border-color: #34a853; background: #34a853; color: #fff; }
-
-        .step-line {
-            width: 60px;
-            height: 2px;
-            background: #ddd;
-            margin: 0 8px;
-        }
-
-        .step-line.done { background: #34a853; }
-        .step-line.active { background: #1a73e8; }
-
-        /* ===== GALLERY SCREEN ===== */
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .gallery-header h1 {
-            font-size: 24px;
-            color: #222;
-        }
-
-        .gallery-header .gallery-count {
-            font-size: 14px;
-            color: #888;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
+        .filter-btn:hover { border-color: #1a73e8; color: #1a73e8; }
+        .filter-btn.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+        .filter-label { font-size: 12px; color: #888; font-weight: 600; margin-right: 4px; }
+
+        /* ===== GALLERY ===== */
+        .gallery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .gallery-header h1 { font-size: 24px; color: #222; }
+        .gallery-header .gallery-count { font-size: 14px; color: #888; }
+
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
         .pedido-gallery-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
+            background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
         }
-
         .pedido-gallery-card:hover {
-            border-color: #1a73e8;
-            box-shadow: 0 4px 20px rgba(26,115,232,0.15);
+            border-color: #1a73e8; box-shadow: 0 4px 20px rgba(26,115,232,0.15);
             transform: translateY(-2px);
         }
-
+        .pedido-gallery-card.closed {
+            opacity: 0.55; background: #f5f5f5; filter: grayscale(0.3);
+        }
+        .pedido-gallery-card.closed:hover {
+            border-color: #999; opacity: 0.75; transform: translateY(-1px);
+        }
         .pedido-gallery-card .card-top {
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            padding: 24px; display: flex; justify-content: space-between; align-items: flex-start;
         }
-
-        .pedido-gallery-card .card-id {
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a73e8;
-        }
-
-        .pedido-gallery-card .card-date {
-            font-size: 13px;
-            color: #888;
-            margin-top: 4px;
-        }
-
-        .pedido-gallery-card .card-body {
-            padding: 0 24px 20px;
-        }
-
+        .pedido-gallery-card .card-id { font-size: 22px; font-weight: 700; color: #1a73e8; }
+        .pedido-gallery-card.closed .card-id { color: #888; }
+        .pedido-gallery-card .card-date { font-size: 13px; color: #888; margin-top: 4px; }
+        .pedido-gallery-card .card-body { padding: 0 24px 20px; }
         .pedido-gallery-card .card-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            font-size: 14px;
-            border-bottom: 1px solid #f0f0f0;
+            display: flex; justify-content: space-between; padding: 8px 0;
+            font-size: 14px; border-bottom: 1px solid #f0f0f0;
         }
-
         .pedido-gallery-card .card-row:last-child { border-bottom: none; }
         .pedido-gallery-card .card-row .label { color: #888; }
         .pedido-gallery-card .card-row .value { font-weight: 600; color: #333; }
-
         .pedido-gallery-card .card-footer {
-            background: #f8f9fa;
-            padding: 14px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #eee;
+            background: #f8f9fa; padding: 14px 24px; display: flex;
+            justify-content: space-between; align-items: center; border-top: 1px solid #eee;
         }
+        .pedido-gallery-card.closed .card-footer { background: #eee; }
+        .pedido-gallery-card .card-footer .items-preview { font-size: 12px; color: #888; }
+        .pedido-gallery-card .card-footer .open-link { font-size: 13px; font-weight: 600; color: #1a73e8; }
+        .pedido-gallery-card.closed .card-footer .open-link { color: #888; }
 
-        .pedido-gallery-card .card-footer .items-preview {
-            font-size: 12px;
-            color: #888;
-        }
+        /* ===== PEDIDO DETAIL ===== */
+        .pedido-layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
 
-        .pedido-gallery-card .card-footer .open-link {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a73e8;
+        .pedido-sidebar {
+            background: #fff; border-radius: 12px; padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: sticky; top: 80px;
         }
+        .pedido-sidebar .pedido-id { font-size: 20px; font-weight: 700; color: #1a73e8; margin-bottom: 4px; }
+        .pedido-sidebar .pedido-subtitle { font-size: 13px; color: #888; margin-bottom: 16px; }
+
+        .info-row {
+            display: flex; justify-content: space-between; padding: 10px 0;
+            font-size: 14px; border-bottom: 1px solid #f0f0f0;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-row .label { color: #888; }
+        .info-row .value { font-weight: 600; color: #333; }
+        .info-row .value.iva { font-size: 12px; color: #888; font-weight: 400; }
+
+        .pedido-main {
+            background: #fff; border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
+        }
+        .pedido-main-header {
+            padding: 20px 24px; border-bottom: 1px solid #eee;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .pedido-main-header h2 { font-size: 18px; color: #333; }
+        .pedido-main-body { padding: 24px; }
+
+        /* ===== ITEMS TABLE ===== */
+        .items-table {
+            width: 100%; border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+        }
+        .item-row {
+            display: grid; grid-template-columns: 1fr 80px 80px 100px 40px;
+            align-items: center; gap: 12px; padding: 14px 16px;
+            border-bottom: 1px solid #f0f0f0; transition: background 0.15s;
+        }
+        .item-row:last-child { border-bottom: none; }
+        .item-row:hover { background: #fafbfc; }
+        .item-row-head {
+            background: #f8f9fa; font-size: 11px; font-weight: 700; color: #888;
+            text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 16px;
+        }
+        .item-row-head:hover { background: #f8f9fa; }
+
+        .item-info { min-width: 0; }
+        .item-name { font-size: 14px; font-weight: 600; color: #333; }
+        .item-detail { font-size: 12px; color: #888; margin-top: 2px; }
+        .item-qty {
+            font-size: 14px; font-weight: 600; color: #333; text-align: center;
+            background: #f5f5f5; padding: 8px; border-radius: 6px;
+        }
+        .item-price { font-size: 14px; font-weight: 600; color: #333; text-align: right; }
+        .item-unit { font-size: 12px; color: #888; text-align: center; }
+
+        /* Warning button */
+        .warn-btn {
+            width: 30px; height: 30px; border-radius: 50%; border: none;
+            background: #fff8e1; color: #f9a825; font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; font-weight: 700;
+        }
+        .warn-btn:hover { background: #ffecb3; transform: scale(1.1); }
+
+        /* ===== TOTALS ===== */
+        .totals-bar {
+            display: flex; justify-content: flex-end; gap: 32px;
+            padding: 16px 24px; background: #f8f9fa; border-top: 1px solid #eee;
+        }
+        .total-item { text-align: right; }
+        .total-item .total-label { font-size: 12px; color: #888; text-transform: uppercase; }
+        .total-item .total-value { font-size: 18px; font-weight: 700; color: #333; }
+        .total-item .total-value.highlight { color: #1a73e8; }
+
+        /* ===== FORM ACTIONS BAR ===== */
+        .form-actions {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 24px; border-top: 1px solid #eee; background: #fafbfc;
+        }
+        .form-actions .actions { display: flex; gap: 12px; }
+
+        /* ===== MODAL / POPUP ===== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #fff; border-radius: 16px; padding: 32px;
+            max-width: 520px; width: 90%; box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .modal h3 { font-size: 20px; margin-bottom: 8px; }
+        .modal .modal-sub { font-size: 14px; color: #888; margin-bottom: 24px; }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; background: none;
+            border: none; font-size: 22px; color: #999; cursor: pointer;
+        }
+        .modal-close:hover { color: #333; }
+
+        /* Upload zone */
+        .upload-zone {
+            border: 2px dashed #ccc; border-radius: 12px; padding: 40px 24px;
+            text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #1a73e8; background: #e8f0fe;
+        }
+        .upload-zone .upload-icon { font-size: 40px; margin-bottom: 12px; color: #1a73e8; }
+        .upload-zone p { font-size: 14px; color: #555; }
+        .upload-zone .upload-hint { font-size: 12px; color: #aaa; margin-top: 8px; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; }
+
+        /* ===== WARNING POPUP (price complaint) ===== */
+        .warn-modal .warn-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+        }
+        .warn-modal .warn-icon {
+            width: 44px; height: 44px; border-radius: 50%; background: #fff8e1;
+            color: #f9a825; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; font-weight: 700;
+        }
+        .warn-modal .warn-title { font-size: 18px; font-weight: 700; }
+        .warn-modal .warn-subtitle { font-size: 13px; color: #888; }
+        .warn-field { margin-bottom: 16px; }
+        .warn-field label {
+            display: block; font-size: 12px; font-weight: 600; color: #555;
+            margin-bottom: 6px; text-transform: uppercase;
+        }
+        .warn-field textarea {
+            width: 100%; padding: 12px; border: 1.5px solid #ddd; border-radius: 8px;
+            font-size: 14px; font-family: inherit; resize: vertical; min-height: 80px;
+        }
+        .warn-field textarea:focus { outline: none; border-color: #1a73e8; }
+        .warn-notice {
+            background: #fff8e1; padding: 12px 16px; border-radius: 8px;
+            font-size: 13px; color: #795548; margin-bottom: 16px; line-height: 1.5;
+        }
+        .warn-notice strong { color: #e65100; }
+        .complaint-btns { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-complaint-supplier {
+            flex: 1; padding: 12px; border: none; border-radius: 8px;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            background: #fff3e0; color: #e65100; transition: all 0.2s;
+        }
+        .btn-complaint-supplier:hover { background: #ffe0b2; }
+        .btn-complaint-buyer {
+            flex: 1; padding: 12px; border: none; border-radius: 8px;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            background: #e8f0fe; color: #1a73e8; transition: all 0.2s;
+        }
+        .btn-complaint-buyer:hover { background: #bbdefb; }
+
+        /* ===== RESULT SCREEN ===== */
+        .result-center {
+            max-width: 600px; margin: 0 auto; background: #fff; border-radius: 12px;
+            padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center;
+        }
+        .result-center .checkmark {
+            width: 64px; height: 64px; border-radius: 50%; background: #e8f5e9;
+            color: #34a853; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 32px; margin-bottom: 16px;
+        }
+        .result-center h2 { font-size: 22px; color: #333; margin-bottom: 8px; }
+        .result-center p { font-size: 14px; color: #888; margin-bottom: 24px; }
+        .result-actions { display: flex; gap: 12px; justify-content: center; }
+
+        /* ===== STEPS ===== */
+        .steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 28px; }
+        .step { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #aaa; }
+        .step.active { color: #1a73e8; font-weight: 600; }
+        .step.done { color: #34a853; }
+        .step .step-num {
+            width: 28px; height: 28px; border-radius: 50%; border: 2px solid #ddd;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700;
+        }
+        .step.active .step-num { border-color: #1a73e8; background: #1a73e8; color: #fff; }
+        .step.done .step-num { border-color: #34a853; background: #34a853; color: #fff; }
+        .step-line { width: 60px; height: 2px; background: #ddd; margin: 0 8px; }
+        .step-line.done { background: #34a853; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .pedido-layout { grid-template-columns: 1fr; }
-            .result-layout { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
             .pedido-sidebar { position: static; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== TOP BAR ===== -->
-    <div class="topbar" id="topbar">
-        <div class="brand">Auto Albaranado</div>
-        <div class="user-info" id="userInfo" style="display:none;">
-            <div class="avatar">AB</div>
-            <span>Proveedor ABC S.L.</span>
-            <button class="logout-btn" onclick="goTo('login')">Salir</button>
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+    <div class="brand">Auto Albaranado</div>
+    <div class="user-info" id="userInfo" style="display:none;">
+        <div class="avatar">AB</div>
+        <span>Proveedor ABC S.L.</span>
+        <button class="logout-btn" onclick="goTo('login')">Salir</button>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SCREEN 1: LOGIN                                                  -->
+<!-- ================================================================ -->
+<div class="screen active" id="screen-login">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="logo">AA</div>
+            <h2>Bienvenido</h2>
+            <p class="subtitle">Portal de proveedores - Gestion de albaranes</p>
+            <div class="form-group">
+                <label>Proveedor</label>
+                <select>
+                    <option value="">Seleccionar proveedor...</option>
+                    <option value="abc" selected>Proveedor ABC S.L.</option>
+                    <option value="xyz">Distribuciones XYZ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Contrasena</label>
+                <input type="password" placeholder="Introducir contrasena" value="demo1234">
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" onclick="goTo('gallery')" style="margin-top:8px;">Entrar</button>
         </div>
     </div>
+</div>
 
-    <!-- ============================================================ -->
-    <!-- SCREEN 1: LOGIN                                              -->
-    <!-- ============================================================ -->
-    <div class="screen active" id="screen-login">
-        <div class="login-wrapper">
-            <div class="login-card">
-                <div class="logo">AA</div>
-                <h2>Bienvenido</h2>
-                <p class="subtitle">Portal de proveedores - Gestion de albaranes</p>
-
-                <div class="form-group">
-                    <label>Proveedor</label>
-                    <select id="proveedorSelect">
-                        <option value="">Seleccionar proveedor...</option>
-                        <option value="abc">Proveedor ABC S.L.</option>
-                        <option value="xyz">Distribuciones XYZ</option>
-                        <option value="123">Suministros 123</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Contrasena</label>
-                    <input type="password" placeholder="Introducir contrasena" value="demo1234">
-                </div>
-
-                <button class="btn btn-primary btn-block btn-lg" onclick="goTo('gallery')" style="margin-top:8px;">
-                    Entrar
-                </button>
+<!-- ================================================================ -->
+<!-- SCREEN 2: GALLERY                                                -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-gallery">
+    <div class="page-content">
+        <div class="gallery-header">
+            <div>
+                <h1>Mis Pedidos</h1>
+                <p style="font-size:14px; color:#888; margin-top:4px;">Pedidos asignados a Proveedor ABC S.L.</p>
             </div>
+            <div class="gallery-count">3 pedidos</div>
         </div>
-    </div>
 
-    <!-- ============================================================ -->
-    <!-- SCREEN 2: GALLERY - PEDIDOS                                  -->
-    <!-- ============================================================ -->
-    <div class="screen" id="screen-gallery">
-        <div class="page-content">
-            <div class="gallery-header">
-                <div>
-                    <h1>Mis Pedidos</h1>
-                    <p style="font-size:14px; color:#888; margin-top:4px;">Pedidos asignados a Proveedor ABC S.L.</p>
-                </div>
-                <div class="gallery-count">2 pedidos pendientes</div>
-            </div>
-
-            <div class="gallery-grid">
-                <!-- Pedido 1 -->
-                <div class="pedido-gallery-card" onclick="goTo('pedido')">
-                    <div class="card-top">
-                        <div>
-                            <div class="card-id">Pedido #1042</div>
-                            <div class="card-date">Creado: 05/04/2026</div>
-                        </div>
-                        <span class="status-badge pending">Pendiente</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-row">
-                            <span class="label">Proveedor</span>
-                            <span class="value">ABC S.L.</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Total articulos</span>
-                            <span class="value">6 items</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Importe</span>
-                            <span class="value">2.450,00 EUR</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Albaranes generados</span>
-                            <span class="value">0</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="items-preview">Tornillos, Arandelas, Tuercas, Varillas...</span>
-                        <span class="open-link">Ver detalle &#8594;</span>
-                    </div>
-                </div>
-
-                <!-- Pedido 2 -->
-                <div class="pedido-gallery-card" onclick="goTo('pedido')">
-                    <div class="card-top">
-                        <div>
-                            <div class="card-id">Pedido #1038</div>
-                            <div class="card-date">Creado: 28/03/2026</div>
-                        </div>
-                        <span class="status-badge partial">Parcial</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-row">
-                            <span class="label">Proveedor</span>
-                            <span class="value">ABC S.L.</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Total articulos</span>
-                            <span class="value">4 items</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Importe</span>
-                            <span class="value">1.180,50 EUR</span>
-                        </div>
-                        <div class="card-row">
-                            <span class="label">Albaranes generados</span>
-                            <span class="value">1</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="items-preview">Cables, Conectores, Fusibles, Relés</span>
-                        <span class="open-link">Ver detalle &#8594;</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Search bar -->
+        <div class="search-bar">
+            <select class="search-category" id="gallerySearchCat">
+                <option value="articulo" style="color:#e65100;">&#9632; Articulo</option>
+                <option value="pedido" style="color:#1a73e8;">&#9632; Pedido</option>
+                <option value="codigo" style="color:#7b1fa2;">&#9632; Codigo articulo</option>
+            </select>
+            <input class="search-input" type="text" placeholder="Buscar pedidos, articulos, codigos...">
+            <button class="search-btn">&#128269;</button>
         </div>
-    </div>
 
-    <!-- ============================================================ -->
-    <!-- SCREEN 3: PEDIDO + ALBARAN FORM                              -->
-    <!-- ============================================================ -->
-    <div class="screen" id="screen-pedido">
-        <div class="page-content">
-            <!-- Breadcrumb -->
-            <div class="breadcrumb" style="padding:0; margin-bottom:20px;">
-                <a onclick="goTo('login')">Inicio</a>
-                <span class="sep">/</span>
-                <a onclick="goTo('gallery')">Mis Pedidos</a>
-                <span class="sep">/</span>
-                <span class="current">Pedido #1042</span>
-            </div>
+        <!-- Filters -->
+        <div class="filter-bar">
+            <span class="filter-label">Filtrar:</span>
+            <button class="filter-btn active" onclick="filterCards('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterCards('pending', this)">Pendientes</button>
+            <button class="filter-btn" onclick="filterCards('partial', this)">Parciales</button>
+            <button class="filter-btn" onclick="filterCards('complete', this)">Cerrados</button>
+        </div>
 
-            <!-- Step indicator -->
-            <div class="steps">
-                <div class="step done">
-                    <div class="step-num">&#10003;</div>
-                    <span>Login</span>
-                </div>
-                <div class="step-line done"></div>
-                <div class="step done">
-                    <div class="step-num">&#10003;</div>
-                    <span>Pedidos</span>
-                </div>
-                <div class="step-line done"></div>
-                <div class="step active">
-                    <div class="step-num">3</div>
-                    <span>Detalle Pedido</span>
-                </div>
-                <div class="step-line"></div>
-                <div class="step">
-                    <div class="step-num">4</div>
-                    <span>Albaran</span>
-                </div>
-            </div>
-
-            <div class="pedido-layout">
-                <!-- Left sidebar: Pedido info -->
-                <div class="pedido-sidebar">
-                    <div class="pedido-id">Pedido #1042</div>
-                    <div class="pedido-subtitle">Detalle del pedido asignado</div>
-
-                    <div class="info-row">
-                        <span class="label">Estado</span>
-                        <span class="status-badge pending">Pendiente</span>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Pedido 1 - Parcial (priority) -->
+            <div class="pedido-gallery-card" data-status="partial" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1042</div>
+                        <div class="card-date">Creado: 05/04/2026</div>
                     </div>
-                    <div class="info-row">
-                        <span class="label">Proveedor</span>
-                        <span class="value">ABC S.L.</span>
+                    <span class="status-badge partial">Parcial</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row">
+                        <span class="label">Comprador</span>
+                        <span class="value">Maria Garcia - Dpto. Compras</span>
                     </div>
-                    <div class="info-row">
-                        <span class="label">Fecha pedido</span>
-                        <span class="value">05/04/2026</span>
-                    </div>
-                    <div class="info-row">
+                    <div class="card-row">
                         <span class="label">Total articulos</span>
                         <span class="value">6 items</span>
                     </div>
-                    <div class="info-row">
-                        <span class="label">Importe</span>
+                    <div class="card-row">
+                        <span class="label">Importe (sin IVA)</span>
                         <span class="value">2.450,00 EUR</span>
                     </div>
-                    <div class="info-row">
-                        <span class="label">Albaranes</span>
-                        <span class="value">0 generados</span>
+                    <div class="card-row">
+                        <span class="label">Importe (con IVA 21%)</span>
+                        <span class="value">2.964,50 EUR</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Albaranes generados</span>
+                        <span class="value">1</span>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <span class="items-preview">Tornillos, Arandelas, Tuercas, Varillas...</span>
+                    <span class="open-link">Ver detalle &#8594;</span>
+                </div>
+            </div>
 
-                <!-- Right main: Albaran form -->
-                <div class="pedido-main">
-                    <div class="pedido-main-header">
-                        <h2>Articulos del Pedido</h2>
+            <!-- Pedido 2 - Pendiente (priority) -->
+            <div class="pedido-gallery-card" data-status="pending" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1051</div>
+                        <div class="card-date">Creado: 08/04/2026</div>
                     </div>
-
-                    <div class="pedido-main-body">
-                        <div class="albaran-form-area disabled" id="albaranFormArea">
-
-                            <!-- ADD ALBARAN BUTTON -->
-                            <div class="add-albaran-zone" id="addAlbaranZone">
-                                <button class="btn-add-albaran" id="btnAddAlbaran" onclick="activateAlbaran()">
-                                    <span class="plus-icon">+</span> Adicionar Albaran
-                                </button>
-                                <p style="margin-top:12px; font-size:13px; color:#888;">
-                                    Pulsa para iniciar un nuevo albaran de entrega
-                                </p>
-                            </div>
-
-                            <!-- Content that activates after clicking -->
-                            <div class="albaran-form-content">
-                                <!-- Active badge -->
-                                <div class="active-albaran-badge" id="albaranActiveBadge">
-                                    <span>&#9679;</span> Nuevo albaran en curso - selecciona los articulos entregados
-                                </div>
-
-                                <!-- Fecha -->
-                                <div class="form-group" style="margin-bottom:16px; max-width:400px;">
-                                    <label>Fecha de entrega</label>
-                                    <div class="date-row">
-                                        <input type="date" id="deliveryDate">
-                                        <button class="btn-oggi" onclick="document.getElementById('deliveryDate').valueAsDate=new Date()">HOY</button>
-                                    </div>
-                                </div>
-
-                                <!-- Items table -->
-                                <div class="items-table-header">
-                                    <h3>Seleccionar articulos</h3>
-                                    <button class="btn btn-outline btn-sm" onclick="toggleAll()">Selec. Todo</button>
-                                </div>
-
-                                <div class="items-table">
-                                    <div class="item-row item-row-head">
-                                        <span></span>
-                                        <span>Articulo</span>
-                                        <span>Cantidad</span>
-                                        <span>Unidad</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Tornillos hex. M8x40</div>
-                                            <div class="item-detail">Pedido: 500 uds</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">uds</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Arandelas planas M8</div>
-                                            <div class="item-detail">Pedido: 500 uds</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">uds</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Tuercas autoblocantes M8</div>
-                                            <div class="item-detail">Pedido: 200 uds</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">uds</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Varilla roscada M10x1m</div>
-                                            <div class="item-detail">Pedido: 20 uds</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">uds</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Bridas acero 200mm</div>
-                                            <div class="item-detail">Pedido: 100 uds</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">uds</span>
-                                    </div>
-                                    <div class="item-row">
-                                        <input type="checkbox" class="item-checkbox">
-                                        <div class="item-info">
-                                            <div class="item-name">Cinta aislante negra</div>
-                                            <div class="item-detail">Pedido: 50 rollos</div>
-                                        </div>
-                                        <input type="number" class="item-qty-input" value="" placeholder="0" min="0">
-                                        <span class="item-unit">rollos</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <span class="status-badge pending">Pendiente</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row">
+                        <span class="label">Comprador</span>
+                        <span class="value">Carlos Ruiz - Dpto. Compras</span>
                     </div>
-
-                    <!-- Bottom actions bar -->
-                    <div class="form-actions" id="formActions" style="opacity:0.35; pointer-events:none;">
-                        <div class="summary-inline">
-                            Seleccionados: <strong id="selectedCount">0 de 6</strong> articulos
-                        </div>
-                        <div class="actions">
-                            <button class="btn btn-outline" onclick="deactivateAlbaran()">Cancelar</button>
-                            <button class="btn btn-success btn-lg" id="btnGuardar" disabled onclick="goTo('albaran')">
-                                Guardar Albaran
-                            </button>
-                        </div>
+                    <div class="card-row">
+                        <span class="label">Total articulos</span>
+                        <span class="value">4 items</span>
                     </div>
+                    <div class="card-row">
+                        <span class="label">Importe (sin IVA)</span>
+                        <span class="value">1.180,50 EUR</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Importe (con IVA 21%)</span>
+                        <span class="value">1.428,41 EUR</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Albaranes generados</span>
+                        <span class="value">0</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="items-preview">Cables, Conectores, Fusibles, Reles</span>
+                    <span class="open-link">Ver detalle &#8594;</span>
+                </div>
+            </div>
+
+            <!-- Pedido 3 - Cerrado (grey, at the bottom) -->
+            <div class="pedido-gallery-card closed" data-status="complete" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1025</div>
+                        <div class="card-date">Creado: 15/03/2026</div>
+                    </div>
+                    <span class="status-badge complete">Cerrado</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row">
+                        <span class="label">Comprador</span>
+                        <span class="value">Maria Garcia - Dpto. Compras</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Total articulos</span>
+                        <span class="value">3 items</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Importe (sin IVA)</span>
+                        <span class="value">780,00 EUR</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Importe (con IVA 21%)</span>
+                        <span class="value">943,80 EUR</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="label">Albaranes generados</span>
+                        <span class="value">2</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="items-preview">Motores, Bombas, Valvulas</span>
+                    <span class="open-link">Ver detalle &#8594;</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ============================================================ -->
-    <!-- SCREEN 3: ALBARAN GENERADO                                   -->
-    <!-- ============================================================ -->
-    <div class="screen" id="screen-albaran">
-        <div class="page-content">
-            <!-- Breadcrumb -->
-            <div class="breadcrumb" style="padding:0; margin-bottom:20px;">
-                <a onclick="goTo('login')">Inicio</a>
-                <span class="sep">/</span>
-                <a onclick="goTo('gallery')">Mis Pedidos</a>
-                <span class="sep">/</span>
-                <a onclick="goTo('pedido')">Pedido #1042</a>
-                <span class="sep">/</span>
-                <span class="current">Albaran ALB-2026-0087</span>
+<!-- ================================================================ -->
+<!-- SCREEN 3: PEDIDO DETAIL                                          -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-pedido">
+    <div class="page-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb" style="padding:0; margin-bottom:20px;">
+            <a onclick="goTo('login')">Inicio</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('gallery')">Mis Pedidos</a>
+            <span class="sep">/</span>
+            <span class="current">Pedido #1042</span>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps">
+            <div class="step done"><div class="step-num">&#10003;</div><span>Login</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Pedidos</span></div>
+            <div class="step-line done"></div>
+            <div class="step active"><div class="step-num">3</div><span>Detalle</span></div>
+            <div class="step-line"></div>
+            <div class="step"><div class="step-num">4</div><span>Albaran</span></div>
+        </div>
+
+        <!-- Search bar (inside pedido) -->
+        <div class="search-bar" style="max-width:600px; margin-bottom:24px;">
+            <select class="search-category">
+                <option value="articulo" style="color:#e65100;">&#9632; Articulo</option>
+                <option value="codigo" style="color:#7b1fa2;">&#9632; Codigo articulo</option>
+            </select>
+            <input class="search-input" type="text" placeholder="Buscar articulo en este pedido...">
+            <button class="search-btn">&#128269;</button>
+        </div>
+
+        <button class="btn-back" onclick="goTo('gallery')" style="margin-bottom:16px;">&#8592; Volver a Mis Pedidos</button>
+
+        <div class="pedido-layout">
+            <!-- Sidebar -->
+            <div class="pedido-sidebar">
+                <div class="pedido-id">Pedido #1042</div>
+                <div class="pedido-subtitle">Detalle del pedido</div>
+                <div class="info-row">
+                    <span class="label">Estado</span>
+                    <span class="status-badge partial">Parcial</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Comprador</span>
+                    <span class="value">Maria Garcia</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Proveedor</span>
+                    <span class="value">ABC S.L.</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Fecha pedido</span>
+                    <span class="value">05/04/2026</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Total articulos</span>
+                    <span class="value">6 items</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Importe sin IVA</span>
+                    <span class="value">2.450,00 EUR</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Importe con IVA</span>
+                    <span class="value">2.964,50 EUR<br><span class="iva">(IVA 21%)</span></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Albaranes</span>
+                    <span class="value">1 generado</span>
+                </div>
             </div>
 
-            <!-- Step indicator -->
-            <div class="steps">
-                <div class="step done">
-                    <div class="step-num">&#10003;</div>
-                    <span>Login</span>
+            <!-- Main content -->
+            <div class="pedido-main">
+                <div class="pedido-main-header">
+                    <h2>Articulos del Pedido</h2>
                 </div>
-                <div class="step-line done"></div>
-                <div class="step done">
-                    <div class="step-num">&#10003;</div>
-                    <span>Pedidos</span>
-                </div>
-                <div class="step-line done"></div>
-                <div class="step done">
-                    <div class="step-num">&#10003;</div>
-                    <span>Detalle Pedido</span>
-                </div>
-                <div class="step-line done"></div>
-                <div class="step active">
-                    <div class="step-num">4</div>
-                    <span>Albaran</span>
-                </div>
-            </div>
 
-            <div class="result-layout">
-                <!-- Left: success message -->
-                <div class="result-message">
-                    <div class="checkmark">&#10003;</div>
-                    <h2>Albaran generado correctamente</h2>
-                    <p>El albaran de entrega ha sido registrado en el sistema.</p>
+                <div class="pedido-main-body" style="padding:0;">
+                    <div class="items-table">
+                        <div class="item-row item-row-head">
+                            <span>Articulo</span>
+                            <span style="text-align:center;">Cantidad</span>
+                            <span style="text-align:center;">Unidad</span>
+                            <span style="text-align:right;">Precio ud.</span>
+                            <span></span>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Tornillos hex. M8x40</div>
+                                <div class="item-detail">COD: TRN-M8X40-HEX</div>
+                            </div>
+                            <div class="item-qty">500</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price">0,85 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Tornillos hex. M8x40', '0,85 EUR')">&#9888;</button>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Arandelas planas M8</div>
+                                <div class="item-detail">COD: ARN-M8-PLA</div>
+                            </div>
+                            <div class="item-qty">500</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price">0,25 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Arandelas planas M8', '0,25 EUR')">&#9888;</button>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Tuercas autoblocantes M8</div>
+                                <div class="item-detail">COD: TCA-M8-AUTO</div>
+                            </div>
+                            <div class="item-qty">200</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price">0,45 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Tuercas autoblocantes M8', '0,45 EUR')">&#9888;</button>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Varilla roscada M10x1m</div>
+                                <div class="item-detail">COD: VAR-M10-1M</div>
+                            </div>
+                            <div class="item-qty">20</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price">12,50 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Varilla roscada M10x1m', '12,50 EUR')">&#9888;</button>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Bridas acero 200mm</div>
+                                <div class="item-detail">COD: BRI-AC-200</div>
+                            </div>
+                            <div class="item-qty">100</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price">3,20 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Bridas acero 200mm', '3,20 EUR')">&#9888;</button>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-info">
+                                <div class="item-name">Cinta aislante negra</div>
+                                <div class="item-detail">COD: CIN-AIS-NEG</div>
+                            </div>
+                            <div class="item-qty">50</div>
+                            <div class="item-unit">rollos</div>
+                            <div class="item-price">2,80 EUR</div>
+                            <button class="warn-btn" onclick="event.stopPropagation(); openWarnModal('Cinta aislante negra', '2,80 EUR')">&#9888;</button>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="result-actions">
-                        <button class="btn btn-outline btn-lg" onclick="goTo('pedido')">
-                            &#8592; Volver al Pedido
+                <!-- Totals -->
+                <div class="totals-bar">
+                    <div class="total-item">
+                        <div class="total-label">Sin IVA</div>
+                        <div class="total-value">2.450,00 EUR</div>
+                    </div>
+                    <div class="total-item">
+                        <div class="total-label">IVA (21%)</div>
+                        <div class="total-value">514,50 EUR</div>
+                    </div>
+                    <div class="total-item">
+                        <div class="total-label">Total con IVA</div>
+                        <div class="total-value highlight">2.964,50 EUR</div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button class="btn-back" onclick="goTo('gallery')">&#8592; Volver</button>
+                    <div class="actions">
+                        <button class="btn btn-success btn-lg" onclick="openUploadModal()">
+                            Guardar y Anadir Albaran
                         </button>
-                        <button class="btn btn-success btn-lg">
-                            Descargar PDF
-                        </button>
-                    </div>
-
-                    <div class="note-box">
-                        <strong>Nota:</strong> Quedan articulos pendientes de entrega. Puedes volver al pedido y generar otro albaran para completar la entrega.
-                    </div>
-                </div>
-
-                <!-- Right: Albaran document -->
-                <div class="albaran-doc">
-                    <div class="doc-title-bar">Albaran de Entrega</div>
-                    <div class="doc-body">
-                        <div class="doc-header-info">
-                            <h3>Albaran de Entrega</h3>
-                            <div class="doc-num">N. ALB-2026-0087</div>
-                        </div>
-
-                        <div class="doc-row">
-                            <span>Pedido:</span>
-                            <strong>#1042</strong>
-                        </div>
-                        <div class="doc-row">
-                            <span>Proveedor:</span>
-                            <strong>ABC S.L.</strong>
-                        </div>
-                        <div class="doc-row">
-                            <span>Fecha entrega:</span>
-                            <strong>08/04/2026</strong>
-                        </div>
-                        <div class="doc-row">
-                            <span>Albaran:</span>
-                            <strong>1 de 1</strong>
-                        </div>
-
-                        <div class="doc-items">
-                            <div class="doc-item">
-                                <span>Tornillos hex. M8x40</span>
-                                <strong>500 uds</strong>
-                            </div>
-                            <div class="doc-item">
-                                <span>Arandelas planas M8</span>
-                                <strong>300 uds</strong>
-                            </div>
-                            <div class="doc-item">
-                                <span>Bridas acero 200mm</span>
-                                <strong>100 uds</strong>
-                            </div>
-                        </div>
-
-                        <div class="doc-total">
-                            Total: 3 articulos entregados
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ===== NOTES ===== -->
-    <div class="notes-section">
-        <h3>Notas del Diseno</h3>
-        <div class="notes-grid">
-            <div class="note-card">
-                <h4>Albaran</h4>
-                <p>Registra <strong>cuales articulos fueron entregados</strong> y en que cantidad. Puede haber <strong>mas de 1 albaran</strong> por pedido (entregas parciales).</p>
-            </div>
-            <div class="note-card factura">
-                <h4>Factura</h4>
-                <p>Contiene el <strong>importe final acordado</strong> del pedido. Solo se entrega <strong>una vez</strong>.</p>
+<!-- ================================================================ -->
+<!-- SCREEN 4: ALBARAN CONFIRMADO                                     -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-albaran">
+    <div class="page-content">
+        <div class="breadcrumb" style="padding:0; margin-bottom:20px;">
+            <a onclick="goTo('login')">Inicio</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('gallery')">Mis Pedidos</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('pedido')">Pedido #1042</a>
+            <span class="sep">/</span>
+            <span class="current">Albaran registrado</span>
+        </div>
+
+        <div class="steps">
+            <div class="step done"><div class="step-num">&#10003;</div><span>Login</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Pedidos</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Detalle</span></div>
+            <div class="step-line done"></div>
+            <div class="step active"><div class="step-num">4</div><span>Albaran</span></div>
+        </div>
+
+        <div class="result-center">
+            <div class="checkmark">&#10003;</div>
+            <h2>Albaran registrado correctamente</h2>
+            <p>El archivo del albaran ha sido adjuntado al pedido #1042.</p>
+
+            <div class="result-actions">
+                <button class="btn btn-outline btn-lg" onclick="goTo('pedido')">&#8592; Volver al Pedido</button>
+                <button class="btn btn-primary btn-lg" onclick="goTo('gallery')">Ir a Mis Pedidos</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // ===== NAVIGATION =====
-        function goTo(screen) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-' + screen).classList.add('active');
+<!-- ================================================================ -->
+<!-- MODAL: UPLOAD ALBARAN                                            -->
+<!-- ================================================================ -->
+<div class="modal-overlay" id="uploadModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+        <h3>Anadir Albaran</h3>
+        <p class="modal-sub">Sube el archivo del albaran de entrega para el Pedido #1042</p>
 
-            // Show/hide user info in topbar
-            document.getElementById('userInfo').style.display = screen === 'login' ? 'none' : 'flex';
+        <div class="upload-zone" id="uploadZone"
+             ondragover="event.preventDefault(); this.classList.add('dragover')"
+             ondragleave="this.classList.remove('dragover')"
+             ondrop="event.preventDefault(); this.classList.remove('dragover'); handleDrop()"
+             onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">&#128206;</div>
+            <p><strong>Arrastra el archivo aqui</strong> o haz clic para seleccionar</p>
+            <p class="upload-hint">PDF, JPG, PNG, XLSX (max. 10MB)</p>
+            <input type="file" id="fileInput" style="display:none" accept=".pdf,.jpg,.png,.xlsx"
+                   onchange="handleFileSelect(this)">
+        </div>
 
-            window.scrollTo(0, 0);
-        }
+        <div id="filePreview" style="display:none; padding:12px; background:#e8f5e9; border-radius:8px; margin-bottom:16px; font-size:14px; color:#2e7d32;">
+            <strong>&#10003;</strong> <span id="fileName"></span>
+        </div>
 
-        // ===== ACTIVATE ALBARAN =====
-        function activateAlbaran() {
-            const area = document.getElementById('albaranFormArea');
-            const btn = document.getElementById('btnAddAlbaran');
-            const badge = document.getElementById('albaranActiveBadge');
-            const actions = document.getElementById('formActions');
-            const zone = document.getElementById('addAlbaranZone');
+        <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeUploadModal()">Volver</button>
+            <button class="btn btn-success btn-lg" id="btnConfirmUpload" disabled onclick="confirmUpload()">
+                Confirmar y Registrar
+            </button>
+        </div>
+    </div>
+</div>
 
-            area.classList.remove('disabled');
-            btn.classList.add('hidden');
-            zone.querySelector('p').style.display = 'none';
-            badge.classList.add('visible');
-            actions.style.opacity = '1';
-            actions.style.pointerEvents = 'auto';
-        }
+<!-- ================================================================ -->
+<!-- MODAL: WARNING / PRICE COMPLAINT                                 -->
+<!-- ================================================================ -->
+<div class="modal-overlay" id="warnModal">
+    <div class="modal warn-modal" style="max-width:480px;">
+        <button class="modal-close" onclick="closeWarnModal()">&times;</button>
 
-        function deactivateAlbaran() {
-            const area = document.getElementById('albaranFormArea');
-            const btn = document.getElementById('btnAddAlbaran');
-            const badge = document.getElementById('albaranActiveBadge');
-            const actions = document.getElementById('formActions');
-            const zone = document.getElementById('addAlbaranZone');
+        <div class="warn-header">
+            <div class="warn-icon">&#9888;</div>
+            <div>
+                <div class="warn-title" id="warnItemName">Articulo</div>
+                <div class="warn-subtitle">Precio actual: <strong id="warnItemPrice">0,00 EUR</strong></div>
+            </div>
+        </div>
 
-            area.classList.add('disabled');
-            btn.classList.remove('hidden');
-            zone.querySelector('p').style.display = '';
-            badge.classList.remove('visible');
-            actions.style.opacity = '0.35';
-            actions.style.pointerEvents = 'none';
+        <div class="warn-field">
+            <label>Descripcion de la diferencia</label>
+            <textarea placeholder="Describe la diferencia en el precio respecto a lo acordado..."></textarea>
+        </div>
 
-            // Reset form
-            document.querySelectorAll('.item-checkbox').forEach(cb => cb.checked = false);
-            document.querySelectorAll('.item-qty-input').forEach(inp => {
-                inp.value = '';
-                inp.classList.remove('has-value');
-            });
-            updateCount();
-        }
+        <div class="warn-notice">
+            <strong>Aviso:</strong> La diferencia reportada sera enviada por correo electronico al destinatario correspondiente para su revision.
+        </div>
 
-        // ===== TOGGLE ALL =====
-        function toggleAll() {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-            checkboxes.forEach(cb => cb.checked = !allChecked);
-            updateCount();
-        }
+        <div class="complaint-btns">
+            <button class="btn-complaint-supplier" onclick="sendComplaint('supplier')">
+                &#9888; Reportar al Comprador<br>
+                <span style="font-size:11px; font-weight:400;">(Error en precio del pedido)</span>
+            </button>
+            <button class="btn-complaint-buyer" onclick="sendComplaint('buyer')">
+                &#9993; Notificar al Proveedor<br>
+                <span style="font-size:11px; font-weight:400;">(Incidencia nuestra al proveedor)</span>
+            </button>
+        </div>
+    </div>
+</div>
 
-        // ===== AUTO-CHECK ON QTY INPUT =====
-        document.querySelectorAll('.item-qty-input').forEach(input => {
-            input.addEventListener('input', function () {
-                const row = this.closest('.item-row');
-                const cb = row.querySelector('.item-checkbox');
-                const hasVal = this.value && parseInt(this.value) > 0;
-                cb.checked = hasVal;
-                this.classList.toggle('has-value', hasVal);
-                updateCount();
-            });
+<script>
+    // ===== NAVIGATION =====
+    function goTo(screen) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + screen).classList.add('active');
+        document.getElementById('userInfo').style.display = screen === 'login' ? 'none' : 'flex';
+        window.scrollTo(0, 0);
+    }
+
+    // ===== GALLERY FILTER =====
+    function filterCards(status, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.pedido-gallery-card').forEach(card => {
+            if (status === 'all') {
+                card.style.display = '';
+            } else {
+                card.style.display = card.dataset.status === status ? '' : 'none';
+            }
         });
+    }
 
-        document.querySelectorAll('.item-checkbox').forEach(cb => {
-            cb.addEventListener('change', updateCount);
-        });
+    // ===== UPLOAD MODAL =====
+    function openUploadModal() {
+        document.getElementById('uploadModal').classList.add('active');
+    }
+    function closeUploadModal() {
+        document.getElementById('uploadModal').classList.remove('active');
+        document.getElementById('filePreview').style.display = 'none';
+        document.getElementById('btnConfirmUpload').disabled = true;
+        document.getElementById('fileInput').value = '';
+    }
+    function handleDrop() {
+        showFile('albaran_entrega.pdf');
+    }
+    function handleFileSelect(input) {
+        if (input.files.length > 0) showFile(input.files[0].name);
+    }
+    function showFile(name) {
+        document.getElementById('fileName').textContent = name;
+        document.getElementById('filePreview').style.display = 'block';
+        document.getElementById('btnConfirmUpload').disabled = false;
+    }
+    function confirmUpload() {
+        closeUploadModal();
+        goTo('albaran');
+    }
 
-        function updateCount() {
-            const total = document.querySelectorAll('.item-checkbox').length;
-            const checked = document.querySelectorAll('.item-checkbox:checked').length;
-            document.getElementById('selectedCount').textContent = checked + ' de ' + total;
-            document.getElementById('btnGuardar').disabled = checked === 0;
-        }
-    </script>
+    // ===== WARNING MODAL =====
+    function openWarnModal(itemName, price) {
+        document.getElementById('warnItemName').textContent = itemName;
+        document.getElementById('warnItemPrice').textContent = price;
+        document.getElementById('warnModal').classList.add('active');
+    }
+    function closeWarnModal() {
+        document.getElementById('warnModal').classList.remove('active');
+    }
+    function sendComplaint(type) {
+        const target = type === 'supplier' ? 'comprador' : 'proveedor';
+        alert('Notificacion enviada al ' + target + ' por correo electronico.');
+        closeWarnModal();
+    }
+</script>
 </body>
 </html>
