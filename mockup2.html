@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Albaranado</title>
+    <style>
+        :root {
+            --ghi-red: #C8102E;
+            --ghi-red-light: #E8450A;
+            --ghi-red-soft: #FFF0ED;
+            --ghi-red-softer: #FFF8F6;
+            --bg: #FFF;
+            --bg-warm: #FAFAF8;
+            --bg-card: #FFF;
+            --surface: #F5F4F1;
+            --surface-alt: #F0EFEC;
+            --border: #E5E4E0;
+            --border-light: #EDECE9;
+            --text: #1A1A1A;
+            --text-secondary: #5A5A58;
+            --text-muted: #8A8A87;
+            --text-faint: #B0B0AD;
+            --white: #FFF;
+            --pbi-gold: #F2C811;
+            --pbi-gold-dark: #D4A800;
+            --pa-purple: #742774;
+            --pa-purple-light: #9B4F96;
+            --skill-blue: #065A82;
+            --skill-blue-light: #0A7EB5;
+            --macro-green: #2C5F2D;
+            --macro-green-light: #3D8B40;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, .06), 0 1px 4px rgba(0, 0, 0, .04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .04);
+            --shadow-hover: 0 20px 60px rgba(0, 0, 0, .1), 0 8px 20px rgba(0, 0, 0, .06);
+            --radius: 10px;
+            --radius-lg: 16px;
+
+            --topbar-h: 60px;
+            --page-pad-x: 40px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { height: 100%; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-warm);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== TOP NAV BAR ===== */
+        .topbar {
+            background: var(--ghi-red);
+            color: var(--white);
+            padding: 0 var(--page-pad-x);
+            height: var(--topbar-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .topbar .brand { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+        .topbar .brand .brand-dot {
+            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--white); margin-right: 10px; vertical-align: middle;
+        }
+        .topbar .user-info { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+        .topbar .user-info .avatar {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,.2); display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 13px;
+        }
+        .topbar .logout-btn {
+            background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2); color: var(--white);
+            padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;
+            transition: all .15s;
+        }
+        .topbar .logout-btn:hover { background: rgba(255,255,255,.28); }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            font-size: 13px; color: var(--text-muted);
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 18px;
+        }
+        .breadcrumb a { color: var(--ghi-red); text-decoration: none; cursor: pointer; font-weight: 500; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { color: var(--text-faint); }
+        .breadcrumb .current { color: var(--text); font-weight: 600; }
+
+        /* ===== SCREENS ===== */
+        .screen { display: none; }
+        .screen.active { display: block; }
+        .page-content {
+            width: 100%;
+            padding: 28px var(--page-pad-x);
+            min-height: calc(100vh - var(--topbar-h));
+        }
+
+        /* ===== LOGIN ===== */
+        .login-wrapper {
+            display: flex; align-items: center; justify-content: center;
+            min-height: calc(100vh - var(--topbar-h));
+            background:
+                radial-gradient(circle at 20% 20%, var(--ghi-red-softer) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--ghi-red-soft) 0%, transparent 50%),
+                var(--bg-warm);
+            padding: 40px;
+        }
+        .login-card {
+            background: var(--bg-card); border-radius: var(--radius-lg); padding: 48px 44px;
+            width: 440px; box-shadow: var(--shadow-lg); text-align: center;
+            border: 1px solid var(--border-light);
+        }
+        .login-card .logo {
+            width: 72px; height: 72px; border-radius: 14px; background: var(--ghi-red);
+            color: var(--white); display: inline-flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: 700; margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(200, 16, 46, .25);
+        }
+        .login-card h2 { font-size: 26px; margin-bottom: 6px; color: var(--text); }
+        .login-card .subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+
+        .form-group { width: 100%; margin-bottom: 18px; text-align: left; }
+        .form-group label {
+            display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary);
+            margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.7px;
+        }
+        .form-group input, .form-group select {
+            width: 100%; padding: 13px 14px; border: 1.5px solid var(--border);
+            border-radius: var(--radius); font-size: 14px; background: var(--bg-warm);
+            transition: all .15s; color: var(--text);
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: var(--ghi-red); background: var(--white);
+            box-shadow: 0 0 0 3px var(--ghi-red-soft);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 12px 22px; border: none; border-radius: var(--radius); font-size: 14px;
+            font-weight: 600; cursor: pointer; transition: all .15s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-primary { background: var(--ghi-red); color: var(--white); }
+        .btn-primary:hover { background: #A50D26; box-shadow: 0 4px 12px rgba(200,16,46,.25); }
+        .btn-primary:disabled { background: #E8A5AE; cursor: not-allowed; box-shadow: none; }
+        .btn-success { background: var(--macro-green-light); color: var(--white); }
+        .btn-success:hover { background: var(--macro-green); box-shadow: 0 4px 12px rgba(44,95,45,.25); }
+        .btn-success:disabled { background: #A8CFA9; cursor: not-allowed; box-shadow: none; }
+        .btn-outline {
+            background: var(--white); color: var(--ghi-red);
+            border: 1.5px solid var(--ghi-red);
+        }
+        .btn-outline:hover { background: var(--ghi-red-soft); }
+        .btn-ghost {
+            background: transparent; color: var(--text-secondary);
+            border: 1.5px solid var(--border);
+        }
+        .btn-ghost:hover { background: var(--surface); border-color: var(--text-muted); }
+        .btn-sm { padding: 8px 14px; font-size: 12px; }
+        .btn-block { width: 100%; }
+        .btn-lg { padding: 14px 28px; font-size: 15px; }
+        .btn-back {
+            background: none; border: none; color: var(--ghi-red); font-size: 14px;
+            cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-back:hover { text-decoration: underline; }
+
+        /* ===== STATUS BADGES ===== */
+        .status-badge {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px;
+        }
+        .status-badge.pending { background: #FFF3E0; color: #E65100; }
+        .status-badge.partial { background: var(--ghi-red-soft); color: var(--ghi-red); }
+        .status-badge.complete { background: #E8F5E9; color: var(--macro-green); }
+
+        /* ===== SEARCH BAR ===== */
+        .search-bar {
+            display: flex; align-items: stretch; gap: 0; margin-bottom: 20px;
+            border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden;
+            background: var(--white); transition: all .15s;
+            box-shadow: var(--shadow-sm);
+        }
+        .search-bar:focus-within {
+            border-color: var(--ghi-red);
+            box-shadow: 0 0 0 3px var(--ghi-red-soft);
+        }
+        .search-category {
+            padding: 12px 14px; border: none; font-size: 13px; font-weight: 700;
+            cursor: pointer; background: var(--surface); min-width: 170px;
+            border-right: 2px solid var(--border); appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%235A5A58' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 12px center;
+            padding-right: 32px; color: var(--text);
+        }
+        .search-category option { font-weight: 600; padding: 8px; }
+        .search-input {
+            flex: 1; padding: 12px 16px; border: none; font-size: 14px; outline: none;
+            background: var(--white); color: var(--text);
+        }
+        .search-input::placeholder { color: var(--text-faint); }
+        .search-btn {
+            padding: 12px 22px; background: var(--ghi-red); color: var(--white); border: none;
+            cursor: pointer; font-size: 16px; transition: background .15s;
+        }
+        .search-btn:hover { background: #A50D26; }
+
+        /* ===== FILTER BUTTONS ===== */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+            cursor: pointer; border: 1.5px solid var(--border); background: var(--white);
+            color: var(--text-secondary); transition: all .15s;
+        }
+        .filter-btn:hover { border-color: var(--ghi-red); color: var(--ghi-red); }
+        .filter-btn.active { background: var(--ghi-red); color: var(--white); border-color: var(--ghi-red); }
+        .filter-label { font-size: 12px; color: var(--text-muted); font-weight: 700; margin-right: 6px; text-transform: uppercase; letter-spacing: .5px; }
+
+        /* ===== GALLERY ===== */
+        .gallery-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 22px; gap: 24px; flex-wrap: wrap;
+        }
+        .gallery-header h1 { font-size: 28px; color: var(--text); letter-spacing: -.3px; }
+        .gallery-header .subtitle { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+        .gallery-header .gallery-count {
+            font-size: 13px; color: var(--text-secondary); font-weight: 600;
+            background: var(--surface); padding: 8px 14px; border-radius: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 22px;
+        }
+
+        .pedido-gallery-card {
+            background: var(--bg-card); border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden; cursor: pointer; transition: all .2s;
+            border: 1.5px solid var(--border-light);
+        }
+        .pedido-gallery-card:hover {
+            border-color: var(--ghi-red); box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .pedido-gallery-card.closed {
+            opacity: .7; background: var(--surface); filter: grayscale(.25);
+        }
+        .pedido-gallery-card.closed:hover {
+            border-color: var(--text-faint); opacity: .85; transform: translateY(-1px);
+        }
+        .pedido-gallery-card .card-top {
+            padding: 22px 24px 18px; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .pedido-gallery-card .card-id { font-size: 22px; font-weight: 700; color: var(--ghi-red); letter-spacing: -.3px; }
+        .pedido-gallery-card.closed .card-id { color: var(--text-muted); }
+        .pedido-gallery-card .card-date { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .pedido-gallery-card .card-body { padding: 0 24px 22px; }
+        .pedido-gallery-card .card-row {
+            display: flex; justify-content: space-between; padding: 9px 0;
+            font-size: 14px; border-bottom: 1px solid var(--border-light);
+        }
+        .pedido-gallery-card .card-row:last-child { border-bottom: none; }
+        .pedido-gallery-card .card-row .label { color: var(--text-muted); }
+        .pedido-gallery-card .card-row .value { font-weight: 600; color: var(--text); }
+
+        /* ===== PEDIDO DETAIL ===== */
+        .pedido-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 24px; align-items: start;
+        }
+
+        .pedido-sidebar {
+            background: var(--bg-card); border-radius: var(--radius-lg); padding: 24px;
+            box-shadow: var(--shadow-sm); position: sticky; top: calc(var(--topbar-h) + 20px);
+            border: 1px solid var(--border-light);
+        }
+        .pedido-sidebar .pedido-id-input {
+            font-size: 22px; font-weight: 700; color: var(--ghi-red);
+            letter-spacing: -.3px; font-family: inherit;
+            display: block; width: 100%;
+            background: transparent; border: 1.5px solid transparent;
+            padding: 4px 10px; border-radius: 8px;
+            margin: -4px -10px 2px; transition: all .15s;
+        }
+        .pedido-sidebar .pedido-id-input:hover {
+            background: var(--bg-warm); border-color: var(--border);
+        }
+        .pedido-sidebar .pedido-id-input:focus {
+            outline: none; background: var(--white);
+            border-color: var(--ghi-red); box-shadow: 0 0 0 3px var(--ghi-red-soft);
+        }
+        .pedido-ghi-ref {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            padding: 10px 12px; background: var(--surface); border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        .pedido-ghi-ref .label {
+            font-size: 10px; color: var(--text-muted); font-weight: 700;
+            text-transform: uppercase; letter-spacing: .6px;
+        }
+        .pedido-ghi-ref .code {
+            font-size: 13px; color: var(--text); font-weight: 700;
+            font-family: 'Consolas', 'Monaco', monospace; letter-spacing: .3px;
+        }
+
+        /* Sidebar delivery progress */
+        .pedido-progress {
+            margin-bottom: 18px; padding: 14px 16px;
+            background: var(--bg-warm); border-radius: 10px;
+            border: 1px solid var(--border-light);
+        }
+        .pedido-progress .progress-head {
+            display: flex; justify-content: space-between; align-items: baseline;
+            font-size: 11px; font-weight: 700; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;
+        }
+        .pedido-progress .progress-pct {
+            color: var(--macro-green); font-size: 18px; letter-spacing: 0;
+        }
+        .pedido-progress .progress-bar {
+            width: 100%; height: 8px; background: var(--surface-alt);
+            border-radius: 4px; overflow: hidden; margin-bottom: 8px;
+        }
+        .pedido-progress .progress-fill {
+            height: 100%; background: linear-gradient(90deg, var(--macro-green-light), var(--macro-green));
+            border-radius: 4px; transition: width .4s ease-out;
+        }
+        .pedido-progress .progress-meta {
+            font-size: 12px; color: var(--text-muted);
+            display: flex; justify-content: space-between;
+        }
+
+        /* Delivered / partial line states */
+        .item-row.delivered { background: #F8FBF8; }
+        .item-row.delivered:hover { background: #F1F7F1; }
+        .item-row.delivered .item-name {
+            color: var(--text-secondary); text-decoration: line-through;
+            text-decoration-thickness: 1px; text-decoration-color: var(--text-faint);
+        }
+        .delivered-mark {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: #E8F5E9; color: var(--macro-green);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 13px; justify-self: center;
+        }
+        .item-status-pill {
+            display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+            padding: 6px 10px; border-radius: 20px; font-size: 11px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: .4px;
+        }
+        .item-status-pill.delivered {
+            background: #E8F5E9; color: var(--macro-green);
+        }
+        /* Totals-top context label */
+        .totals-top-label {
+            font-size: 11px; color: var(--text-muted); font-weight: 700;
+            text-transform: uppercase; letter-spacing: .6px;
+            margin-right: auto; align-self: center;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .totals-top-label::before {
+            content: ""; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--ghi-red);
+        }
+
+        /* Selection hint in actions bar */
+        .selection-hint {
+            flex: 1; font-size: 13px; color: var(--text-muted);
+            display: flex; align-items: center; gap: 10px;
+            padding: 0 8px; min-width: 200px;
+        }
+        .selection-hint .hint-icon {
+            display: inline-flex; width: 22px; height: 22px; flex-shrink: 0;
+            border-radius: 50%; background: var(--ghi-red-soft); color: var(--ghi-red);
+            align-items: center; justify-content: center;
+            font-weight: 700; font-size: 13px;
+        }
+
+        /* Select-all pill inside main header */
+        .header-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .select-all-pill {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 7px 14px 7px 10px; border-radius: 20px;
+            background: var(--surface); border: 1.5px solid transparent;
+            font-size: 13px; font-weight: 600; color: var(--text-secondary);
+            cursor: pointer; transition: all .15s; user-select: none;
+        }
+        .select-all-pill:hover {
+            background: var(--ghi-red-soft); color: var(--ghi-red);
+            border-color: var(--ghi-red);
+        }
+        .select-all-pill .item-check { width: 18px; height: 18px; }
+
+        .info-row {
+            display: flex; justify-content: space-between; padding: 10px 0;
+            font-size: 14px; border-bottom: 1px solid var(--border-light); gap: 12px;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-row .label { color: var(--text-muted); }
+        .info-row .value { font-weight: 600; color: var(--text); text-align: right; }
+        .info-row .value.iva { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+
+        .pedido-main {
+            background: var(--bg-card); border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm); overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        .pedido-main-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--border-light);
+            display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+        }
+        .pedido-main-header h2 { font-size: 18px; color: var(--text); }
+        .pedido-main-header .selection-counter {
+            font-size: 13px; color: var(--text-secondary); font-weight: 600;
+            background: var(--ghi-red-soft); color: var(--ghi-red);
+            padding: 6px 14px; border-radius: 20px;
+        }
+        .pedido-main-body { padding: 0; }
+
+        /* ===== ITEMS TABLE (with checkboxes) ===== */
+        .items-table { width: 100%; }
+        .item-row {
+            display: grid;
+            grid-template-columns: 46px 1fr 110px 80px 120px 44px;
+            align-items: center; gap: 14px; padding: 14px 24px;
+            border-bottom: 1px solid var(--border-light); transition: background .15s;
+        }
+        .item-row:last-child { border-bottom: none; }
+        .item-row:hover { background: var(--bg-warm); }
+        .item-row.selected { background: var(--ghi-red-softer); }
+        .item-row.selected:hover { background: var(--ghi-red-soft); }
+        .item-row-head {
+            background: var(--surface); font-size: 11px; font-weight: 700; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: .6px; padding: 12px 24px;
+        }
+        .item-row-head:hover { background: var(--surface); }
+
+        /* Checkbox (law: one per line) */
+        .item-check {
+            width: 22px; height: 22px; border: 2px solid var(--border);
+            border-radius: 6px; cursor: pointer; display: inline-flex;
+            align-items: center; justify-content: center;
+            background: var(--white); transition: all .15s;
+            appearance: none; margin: 0;
+        }
+        .item-check:hover { border-color: var(--ghi-red); }
+        .item-check:checked {
+            background: var(--ghi-red); border-color: var(--ghi-red);
+        }
+        .item-check:checked::after {
+            content: "\2713"; color: var(--white); font-size: 14px; font-weight: 700;
+        }
+
+        .item-info { min-width: 0; }
+        .item-name { font-size: 14px; font-weight: 600; color: var(--text); }
+        .item-detail { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .item-qty {
+            font-size: 14px; font-weight: 700; color: var(--text); text-align: center;
+            background: var(--surface); padding: 8px 10px; border-radius: 8px;
+        }
+        .item-unit { font-size: 12px; color: var(--text-muted); text-align: center; font-weight: 500; }
+        .item-price { font-size: 14px; font-weight: 700; color: var(--text); text-align: right; }
+
+        /* Warning button */
+        .warn-btn {
+            width: 32px; height: 32px; border-radius: 50%; border: none;
+            background: #FFF8E1; color: #F9A825; font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all .15s; font-weight: 700;
+        }
+        .warn-btn:hover { background: #FFECB3; transform: scale(1.1); }
+
+        /* ===== TOTALS ===== */
+        .totals-bar {
+            display: flex; justify-content: flex-end; gap: 32px; flex-wrap: wrap;
+            padding: 16px 24px; background: var(--surface); border-top: 1px solid var(--border-light);
+        }
+        .totals-bar.totals-top {
+            border-top: none; border-radius: var(--radius-lg);
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm); padding: 14px 22px;
+            align-items: center;
+        }
+        .total-item { text-align: right; }
+        .total-item .total-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+        .total-item .total-value { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 2px; }
+        .total-item .total-value.highlight { color: var(--ghi-red); }
+
+        /* ===== FORM ACTIONS BAR ===== */
+        .form-actions {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 24px; border-top: 1px solid var(--border-light); background: var(--bg-warm); gap: 12px; flex-wrap: wrap;
+        }
+        .form-actions .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        /* ===== MODAL / POPUP ===== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-card); border-radius: var(--radius-lg); padding: 32px;
+            max-width: 520px; width: 100%; box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        .modal h3 { font-size: 20px; margin-bottom: 8px; color: var(--text); }
+        .modal .modal-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; background: none;
+            border: none; font-size: 24px; color: var(--text-faint); cursor: pointer;
+            line-height: 1;
+        }
+        .modal-close:hover { color: var(--text); }
+
+        /* Upload zone */
+        .upload-zone {
+            border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 40px 24px;
+            text-align: center; cursor: pointer; transition: all .15s; margin-bottom: 20px;
+            background: var(--bg-warm);
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--ghi-red); background: var(--ghi-red-soft);
+        }
+        .upload-zone .upload-icon { font-size: 40px; margin-bottom: 12px; color: var(--ghi-red); }
+        .upload-zone p { font-size: 14px; color: var(--text-secondary); }
+        .upload-zone .upload-hint { font-size: 12px; color: var(--text-faint); margin-top: 8px; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+
+        /* ===== WARNING POPUP (price complaint) ===== */
+        .warn-modal .warn-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+        }
+        .warn-modal .warn-icon {
+            width: 44px; height: 44px; border-radius: 50%; background: #FFF8E1;
+            color: #F9A825; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; font-weight: 700;
+        }
+        .warn-modal .warn-title { font-size: 18px; font-weight: 700; color: var(--text); }
+        .warn-modal .warn-subtitle { font-size: 13px; color: var(--text-muted); }
+        .warn-field { margin-bottom: 16px; }
+        .warn-field label {
+            display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary);
+            margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px;
+        }
+        .warn-field textarea {
+            width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: var(--radius);
+            font-size: 14px; font-family: inherit; resize: vertical; min-height: 80px;
+            background: var(--bg-warm); color: var(--text);
+        }
+        .warn-field textarea:focus {
+            outline: none; border-color: var(--ghi-red); background: var(--white);
+            box-shadow: 0 0 0 3px var(--ghi-red-soft);
+        }
+        .warn-notice {
+            background: #FFF8E1; padding: 12px 16px; border-radius: var(--radius);
+            font-size: 13px; color: #795548; margin-bottom: 16px; line-height: 1.5;
+        }
+        .warn-notice strong { color: #E65100; }
+        .complaint-btns { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        .btn-complaint-supplier {
+            flex: 1; min-width: 160px; padding: 12px; border: none; border-radius: var(--radius);
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            background: #FFF3E0; color: #E65100; transition: all .15s;
+        }
+        .btn-complaint-supplier:hover { background: #FFE0B2; }
+        .btn-complaint-buyer {
+            flex: 1; min-width: 160px; padding: 12px; border: none; border-radius: var(--radius);
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            background: var(--ghi-red-soft); color: var(--ghi-red); transition: all .15s;
+        }
+        .btn-complaint-buyer:hover { background: #FFDDD6; }
+
+        /* ===== RESULT SCREEN ===== */
+        .result-center {
+            max-width: 640px; margin: 0 auto; background: var(--bg-card); border-radius: var(--radius-lg);
+            padding: 48px 40px; box-shadow: var(--shadow-md); text-align: center;
+            border: 1px solid var(--border-light);
+        }
+        .result-center .checkmark {
+            width: 72px; height: 72px; border-radius: 50%; background: #E8F5E9;
+            color: var(--macro-green); display: inline-flex; align-items: center; justify-content: center;
+            font-size: 34px; margin-bottom: 16px;
+        }
+        .result-center h2 { font-size: 24px; color: var(--text); margin-bottom: 8px; }
+        .result-center p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+        .result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        /* ===== STEPS ===== */
+        .steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 28px; flex-wrap: wrap; }
+        .step { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); font-weight: 600; }
+        .step.active { color: var(--ghi-red); }
+        .step.done { color: var(--macro-green); }
+        .step .step-num {
+            width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700; background: var(--white);
+        }
+        .step.active .step-num { border-color: var(--ghi-red); background: var(--ghi-red); color: var(--white); }
+        .step.done .step-num { border-color: var(--macro-green); background: var(--macro-green); color: var(--white); }
+        .step-line { width: 60px; height: 2px; background: var(--border); margin: 0 8px; }
+        .step-line.done { background: var(--macro-green); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .pedido-layout { grid-template-columns: 1fr; }
+            .pedido-sidebar { position: static; }
+        }
+        @media (max-width: 760px) {
+            :root { --page-pad-x: 20px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .item-row {
+                grid-template-columns: 36px 1fr 80px 44px;
+                gap: 10px; padding: 12px 16px;
+            }
+            .item-row .item-unit, .item-row .item-price-cell { display: none; }
+            .item-row-head { padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+    <div class="brand"><span class="brand-dot"></span>Auto Albaranado</div>
+    <div class="user-info" id="userInfo" style="display:none;">
+        <div class="avatar">AB</div>
+        <span>Proveedor ABC S.L.</span>
+        <button class="logout-btn" onclick="goTo('login')">Salir</button>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SCREEN 1: LOGIN                                                  -->
+<!-- ================================================================ -->
+<div class="screen active" id="screen-login">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="logo">AA</div>
+            <h2>Bienvenido</h2>
+            <p class="subtitle">Portal de proveedores &middot; Gestion de albaranes</p>
+            <div class="form-group">
+                <label>Proveedor</label>
+                <select>
+                    <option value="">Seleccionar proveedor...</option>
+                    <option value="abc" selected>Proveedor ABC S.L.</option>
+                    <option value="xyz">Distribuciones XYZ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Contrasena</label>
+                <input type="password" placeholder="Introducir contrasena" value="demo1234">
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" onclick="goTo('gallery')" style="margin-top:8px;">Entrar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SCREEN 2: GALLERY                                                -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-gallery">
+    <div class="page-content">
+        <div class="gallery-header">
+            <div>
+                <h1>Mis Pedidos</h1>
+                <p class="subtitle">Pedidos asignados a Proveedor ABC S.L.</p>
+            </div>
+            <div class="gallery-count">3 pedidos</div>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-bar">
+            <select class="search-category" id="gallerySearchCat">
+                <option value="articulo">Articulo</option>
+                <option value="pedido">Pedido</option>
+                <option value="codigo">Codigo articulo</option>
+            </select>
+            <input class="search-input" type="text" placeholder="Buscar pedidos, articulos, codigos...">
+            <button class="search-btn">&#128269;</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+            <span class="filter-label">Filtrar:</span>
+            <button class="filter-btn active" onclick="filterCards('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterCards('pending', this)">Pendientes</button>
+            <button class="filter-btn" onclick="filterCards('partial', this)">Parciales</button>
+            <button class="filter-btn" onclick="filterCards('complete', this)">Cerrados</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Pedido 1 - Parcial -->
+            <div class="pedido-gallery-card" data-status="partial" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1042</div>
+                        <div class="card-date">Creado: 05/04/2026</div>
+                    </div>
+                    <span class="status-badge partial">Parcial</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row"><span class="label">Comprador</span><span class="value">Maria Garcia</span></div>
+                    <div class="card-row"><span class="label">Total articulos</span><span class="value">6 items</span></div>
+                    <div class="card-row"><span class="label">Importe (sin IVA)</span><span class="value">2.450,00 EUR</span></div>
+                    <div class="card-row"><span class="label">Importe (con IVA 21%)</span><span class="value">2.964,50 EUR</span></div>
+                    <div class="card-row"><span class="label">Albaranes generados</span><span class="value">1</span></div>
+                </div>
+            </div>
+
+            <!-- Pedido 2 - Pendiente -->
+            <div class="pedido-gallery-card" data-status="pending" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1051</div>
+                        <div class="card-date">Creado: 08/04/2026</div>
+                    </div>
+                    <span class="status-badge pending">Pendiente</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row"><span class="label">Comprador</span><span class="value">Carlos Ruiz</span></div>
+                    <div class="card-row"><span class="label">Total articulos</span><span class="value">4 items</span></div>
+                    <div class="card-row"><span class="label">Importe (sin IVA)</span><span class="value">1.200,00 EUR</span></div>
+                    <div class="card-row"><span class="label">Importe (con IVA 21%)</span><span class="value">1.452,00 EUR</span></div>
+                    <div class="card-row"><span class="label">Albaranes generados</span><span class="value">0</span></div>
+                </div>
+            </div>
+
+            <!-- Pedido 3 - Cerrado -->
+            <div class="pedido-gallery-card closed" data-status="complete" onclick="goTo('pedido')">
+                <div class="card-top">
+                    <div>
+                        <div class="card-id">Pedido #1025</div>
+                        <div class="card-date">Creado: 15/03/2026</div>
+                    </div>
+                    <span class="status-badge complete">Cerrado</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row"><span class="label">Comprador</span><span class="value">Maria Garcia</span></div>
+                    <div class="card-row"><span class="label">Total articulos</span><span class="value">3 items</span></div>
+                    <div class="card-row"><span class="label">Importe (sin IVA)</span><span class="value">780,00 EUR</span></div>
+                    <div class="card-row"><span class="label">Importe (con IVA 21%)</span><span class="value">943,80 EUR</span></div>
+                    <div class="card-row"><span class="label">Albaranes generados</span><span class="value">2</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SCREEN 3: PEDIDO DETAIL                                          -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-pedido">
+    <div class="page-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a onclick="goTo('login')">Inicio</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('gallery')">Mis Pedidos</a>
+            <span class="sep">/</span>
+            <span class="current">Pedido #1042</span>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps">
+            <div class="step done"><div class="step-num">&#10003;</div><span>Login</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Pedidos</span></div>
+            <div class="step-line done"></div>
+            <div class="step active"><div class="step-num">3</div><span>Detalle</span></div>
+            <div class="step-line"></div>
+            <div class="step"><div class="step-num">4</div><span>Albaran</span></div>
+        </div>
+
+        <button class="btn-back" onclick="goTo('gallery')" style="margin-bottom:16px;">&#8592; Volver a Mis Pedidos</button>
+
+        <div class="pedido-layout">
+            <!-- Row 1: search-bar (sidebar column) + totals-bar (main column) -->
+            <div class="search-bar" style="margin-bottom:0;">
+                <select class="search-category">
+                    <option value="articulo">Articulo</option>
+                    <option value="codigo">Codigo</option>
+                </select>
+                <input class="search-input" type="text" placeholder="Buscar articulo...">
+                <button class="search-btn">&#128269;</button>
+            </div>
+            <div class="totals-bar totals-top">
+                <div class="totals-top-label">Resumen pedido</div>
+                <div class="total-item">
+                    <div class="total-label">Sin IVA</div>
+                    <div class="total-value">2.450,00 EUR</div>
+                </div>
+                <div class="total-item">
+                    <div class="total-label">IVA (21%)</div>
+                    <div class="total-value">514,50 EUR</div>
+                </div>
+                <div class="total-item">
+                    <div class="total-label">Total con IVA</div>
+                    <div class="total-value highlight">2.964,50 EUR</div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="pedido-sidebar">
+                <input type="text" class="pedido-id-input" value="Pedido #1042" title="Haz clic para renombrar el pedido">
+                <div class="pedido-ghi-ref">
+                    <span class="label">Pedido GHI</span>
+                    <span class="code">GHI-2026-0042</span>
+                </div>
+                <div class="pedido-progress">
+                    <div class="progress-head">
+                        <span>Entregado</span>
+                        <span class="progress-pct">2 / 6 lineas</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 11%"></div>
+                    </div>
+                    <div class="progress-meta">
+                        <span>265,00 EUR</span>
+                        <span>de 2.450,00 EUR</span>
+                    </div>
+                </div>
+                <div class="info-row"><span class="label">Estado</span><span class="status-badge partial">Parcial</span></div>
+                <div class="info-row"><span class="label">Comprador</span><span class="value">Maria Garcia</span></div>
+                <div class="info-row"><span class="label">Proveedor</span><span class="value">ABC S.L.</span></div>
+                <div class="info-row"><span class="label">Fecha pedido</span><span class="value">05/04/2026</span></div>
+                <div class="info-row"><span class="label">Total articulos</span><span class="value">6 items</span></div>
+                <div class="info-row"><span class="label">Importe sin IVA</span><span class="value">2.450,00 EUR</span></div>
+                <div class="info-row"><span class="label">Importe con IVA</span><span class="value">2.964,50 EUR<br><span class="iva">(IVA 21%)</span></span></div>
+                <div class="info-row"><span class="label">Albaranes</span><span class="value">1 generado</span></div>
+            </div>
+
+            <!-- Main content -->
+            <div class="pedido-main">
+                <div class="pedido-main-header">
+                    <h2>Articulos del Pedido</h2>
+                    <div class="header-controls">
+                        <label class="select-all-pill">
+                            <input type="checkbox" class="item-check" id="selectAll" onchange="toggleAll(this)">
+                            <span>Seleccionar todos</span>
+                        </label>
+                        <div class="selection-counter" id="selectionCounter">0 / 6 seleccionados</div>
+                    </div>
+                </div>
+
+                <div class="pedido-main-body">
+                    <div class="items-table">
+                        <div class="item-row item-row-head">
+                            <span></span>
+                            <span>Articulo</span>
+                            <span style="text-align:center;">Cantidad</span>
+                            <span style="text-align:center;">Unidad</span>
+                            <span style="text-align:right;">Precio ud.</span>
+                            <span></span>
+                        </div>
+                        <label class="item-row">
+                            <input type="checkbox" class="item-check line-check" onchange="updateSelection()">
+                            <div class="item-info">
+                                <div class="item-name">Tornillos hex. M8x40</div>
+                                <div class="item-detail">COD: TRN-M8X40-HEX</div>
+                            </div>
+                            <div class="item-qty">500</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price item-price-cell">0,85 EUR</div>
+                            <button class="warn-btn" onclick="event.preventDefault(); event.stopPropagation(); openWarnModal('Tornillos hex. M8x40', '0,85 EUR')">&#9888;</button>
+                        </label>
+                        <div class="item-row delivered">
+                            <span class="delivered-mark">&#10003;</span>
+                            <div class="item-info">
+                                <div class="item-name">Arandelas planas M8</div>
+                                <div class="item-detail">COD: ARN-M8-PLA</div>
+                            </div>
+                            <div class="item-status-pill delivered">Entregado</div>
+                            <div class="item-unit">500 uds</div>
+                            <div class="item-price item-price-cell">0,25 EUR</div>
+                            <button class="warn-btn" title="Reportar diferencia de precio" onclick="openWarnModal('Arandelas planas M8', '0,25 EUR')">&#9888;</button>
+                        </div>
+                        <label class="item-row">
+                            <input type="checkbox" class="item-check line-check" onchange="updateSelection()">
+                            <div class="item-info">
+                                <div class="item-name">Tuercas autoblocantes M8</div>
+                                <div class="item-detail">COD: TCA-M8-AUTO</div>
+                            </div>
+                            <div class="item-qty">200</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price item-price-cell">0,45 EUR</div>
+                            <button class="warn-btn" title="Reportar diferencia de precio" onclick="event.preventDefault(); event.stopPropagation(); openWarnModal('Tuercas autoblocantes M8', '0,45 EUR')">&#9888;</button>
+                        </label>
+                        <label class="item-row">
+                            <input type="checkbox" class="item-check line-check" onchange="updateSelection()">
+                            <div class="item-info">
+                                <div class="item-name">Varilla roscada M10x1m</div>
+                                <div class="item-detail">COD: VAR-M10-1M</div>
+                            </div>
+                            <div class="item-qty">20</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price item-price-cell">12,50 EUR</div>
+                            <button class="warn-btn" onclick="event.preventDefault(); event.stopPropagation(); openWarnModal('Varilla roscada M10x1m', '12,50 EUR')">&#9888;</button>
+                        </label>
+                        <label class="item-row">
+                            <input type="checkbox" class="item-check line-check" onchange="updateSelection()">
+                            <div class="item-info">
+                                <div class="item-name">Bridas acero 200mm</div>
+                                <div class="item-detail">COD: BRI-AC-200</div>
+                            </div>
+                            <div class="item-qty">100</div>
+                            <div class="item-unit">uds</div>
+                            <div class="item-price item-price-cell">3,20 EUR</div>
+                            <button class="warn-btn" onclick="event.preventDefault(); event.stopPropagation(); openWarnModal('Bridas acero 200mm', '3,20 EUR')">&#9888;</button>
+                        </label>
+                        <div class="item-row delivered">
+                            <span class="delivered-mark">&#10003;</span>
+                            <div class="item-info">
+                                <div class="item-name">Cinta aislante negra</div>
+                                <div class="item-detail">COD: CIN-AIS-NEG</div>
+                            </div>
+                            <div class="item-status-pill delivered">Entregado</div>
+                            <div class="item-unit">50 rollos</div>
+                            <div class="item-price item-price-cell">2,80 EUR</div>
+                            <button class="warn-btn" title="Reportar diferencia de precio" onclick="openWarnModal('Cinta aislante negra', '2,80 EUR')">&#9888;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button class="btn-back" onclick="goTo('gallery')">&#8592; Volver</button>
+                    <div class="selection-hint" id="selectionHint">
+                        <span class="hint-icon">i</span>
+                        <span>Selecciona los articulos entregados en este albaran para continuar.</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-ghost btn-lg" id="btnClearSel" onclick="clearSelection()" style="display:none;">Limpiar seleccion</button>
+                        <button class="btn btn-success btn-lg" id="btnAddAlbaran" disabled onclick="openUploadModal()">
+                            Guardar y Anadir Albaran
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SCREEN 4: ALBARAN CONFIRMADO                                     -->
+<!-- ================================================================ -->
+<div class="screen" id="screen-albaran">
+    <div class="page-content">
+        <div class="breadcrumb">
+            <a onclick="goTo('login')">Inicio</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('gallery')">Mis Pedidos</a>
+            <span class="sep">/</span>
+            <a onclick="goTo('pedido')">Pedido #1042</a>
+            <span class="sep">/</span>
+            <span class="current">Albaran registrado</span>
+        </div>
+
+        <div class="steps">
+            <div class="step done"><div class="step-num">&#10003;</div><span>Login</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Pedidos</span></div>
+            <div class="step-line done"></div>
+            <div class="step done"><div class="step-num">&#10003;</div><span>Detalle</span></div>
+            <div class="step-line done"></div>
+            <div class="step active"><div class="step-num">4</div><span>Albaran</span></div>
+        </div>
+
+        <div class="result-center">
+            <div class="checkmark">&#10003;</div>
+            <h2>Albaran registrado correctamente</h2>
+            <p>El archivo del albaran ha sido adjuntado al pedido #1042.</p>
+
+            <div class="result-actions">
+                <button class="btn btn-outline btn-lg" onclick="goTo('pedido')">&#8592; Volver al Pedido</button>
+                <button class="btn btn-primary btn-lg" onclick="goTo('gallery')">Ir a Mis Pedidos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- MODAL: UPLOAD ALBARAN                                            -->
+<!-- ================================================================ -->
+<div class="modal-overlay" id="uploadModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+        <h3>Anadir Albaran</h3>
+        <p class="modal-sub">Sube el archivo del albaran de entrega para el Pedido #1042</p>
+
+        <div class="upload-zone" id="uploadZone"
+             ondragover="event.preventDefault(); this.classList.add('dragover')"
+             ondragleave="this.classList.remove('dragover')"
+             ondrop="event.preventDefault(); this.classList.remove('dragover'); handleDrop()"
+             onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">&#128206;</div>
+            <p><strong>Arrastra el archivo aqui</strong> o haz clic para seleccionar</p>
+            <p class="upload-hint">PDF, JPG, PNG, XLSX (max. 10MB)</p>
+            <input type="file" id="fileInput" style="display:none" accept=".pdf,.jpg,.png,.xlsx"
+                   onchange="handleFileSelect(this)">
+        </div>
+
+        <div id="filePreview" style="display:none; padding:12px; background:#E8F5E9; border-radius:10px; margin-bottom:16px; font-size:14px; color:#2E7D32;">
+            <strong>&#10003;</strong> <span id="fileName"></span>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn btn-ghost" onclick="closeUploadModal()">Volver</button>
+            <button class="btn btn-success btn-lg" id="btnConfirmUpload" disabled onclick="confirmUpload()">
+                Confirmar y Registrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- MODAL: WARNING / PRICE COMPLAINT                                 -->
+<!-- ================================================================ -->
+<div class="modal-overlay" id="warnModal">
+    <div class="modal warn-modal" style="max-width:480px;">
+        <button class="modal-close" onclick="closeWarnModal()">&times;</button>
+
+        <div class="warn-header">
+            <div class="warn-icon">&#9888;</div>
+            <div>
+                <div class="warn-title" id="warnItemName">Articulo</div>
+                <div class="warn-subtitle">Precio actual: <strong id="warnItemPrice">0,00 EUR</strong></div>
+            </div>
+        </div>
+
+        <div class="warn-field">
+            <label>Descripcion de la diferencia</label>
+            <textarea placeholder="Describe la diferencia en el precio respecto a lo acordado..."></textarea>
+        </div>
+
+        <div class="warn-notice">
+            <strong>Aviso:</strong> La diferencia reportada sera enviada por correo electronico al destinatario correspondiente para su revision.
+        </div>
+
+        <div class="complaint-btns">
+            <button class="btn-complaint-supplier" onclick="sendComplaint('supplier')">
+                &#9888; Reportar al Comprador<br>
+                <span style="font-size:11px; font-weight:400;">(Error en precio del pedido)</span>
+            </button>
+            <button class="btn-complaint-buyer" onclick="sendComplaint('buyer')">
+                &#9993; Notificar al Proveedor<br>
+                <span style="font-size:11px; font-weight:400;">(Incidencia nuestra al proveedor)</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== NAVIGATION =====
+    function goTo(screen) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + screen).classList.add('active');
+        document.getElementById('userInfo').style.display = screen === 'login' ? 'none' : 'flex';
+        window.scrollTo(0, 0);
+    }
+
+    // ===== GALLERY FILTER =====
+    function filterCards(status, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.pedido-gallery-card').forEach(card => {
+            card.style.display = (status === 'all' || card.dataset.status === status) ? '' : 'none';
+        });
+    }
+
+    // ===== LINE SELECTION (law: checkbox per line) =====
+    function updateSelection() {
+        const checks = document.querySelectorAll('.line-check');
+        const selected = document.querySelectorAll('.line-check:checked').length;
+        const total = checks.length;
+        document.getElementById('selectionCounter').textContent = selected + ' / ' + total + ' seleccionados';
+
+        checks.forEach(c => {
+            c.closest('.item-row').classList.toggle('selected', c.checked);
+        });
+
+        const selectAll = document.getElementById('selectAll');
+        selectAll.checked = selected === total && total > 0;
+        selectAll.indeterminate = selected > 0 && selected < total;
+
+        const btn = document.getElementById('btnAddAlbaran');
+        if (btn) btn.disabled = selected === 0;
+
+        const clearBtn = document.getElementById('btnClearSel');
+        if (clearBtn) clearBtn.style.display = selected > 0 ? '' : 'none';
+
+        const hint = document.getElementById('selectionHint');
+        if (hint) hint.style.display = selected > 0 ? 'none' : 'flex';
+    }
+    function toggleAll(master) {
+        document.querySelectorAll('.line-check').forEach(c => { c.checked = master.checked; });
+        updateSelection();
+    }
+    function clearSelection() {
+        document.querySelectorAll('.line-check').forEach(c => { c.checked = false; });
+        document.getElementById('selectAll').checked = false;
+        updateSelection();
+    }
+
+    // ===== UPLOAD MODAL =====
+    function openUploadModal() { document.getElementById('uploadModal').classList.add('active'); }
+    function closeUploadModal() {
+        document.getElementById('uploadModal').classList.remove('active');
+        document.getElementById('filePreview').style.display = 'none';
+        document.getElementById('btnConfirmUpload').disabled = true;
+        document.getElementById('fileInput').value = '';
+    }
+    function handleDrop() { showFile('albaran_entrega.pdf'); }
+    function handleFileSelect(input) { if (input.files.length > 0) showFile(input.files[0].name); }
+    function showFile(name) {
+        document.getElementById('fileName').textContent = name;
+        document.getElementById('filePreview').style.display = 'block';
+        document.getElementById('btnConfirmUpload').disabled = false;
+    }
+    function confirmUpload() { closeUploadModal(); goTo('albaran'); }
+
+    // ===== WARNING MODAL =====
+    function openWarnModal(itemName, price) {
+        document.getElementById('warnItemName').textContent = itemName;
+        document.getElementById('warnItemPrice').textContent = price;
+        document.getElementById('warnModal').classList.add('active');
+    }
+    function closeWarnModal() { document.getElementById('warnModal').classList.remove('active'); }
+    function sendComplaint(type) {
+        const target = type === 'supplier' ? 'comprador' : 'proveedor';
+        alert('Notificacion enviada al ' + target + ' por correo electronico.');
+        closeWarnModal();
+    }
+</script>
+</body>
+</html>

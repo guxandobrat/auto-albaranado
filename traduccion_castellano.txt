@@ -1,0 +1,19 @@
+Eliminar todo lo que tenga que ver con FACTURA; solo trataremos con albaranes.
+
+Mostrar el precio de cada línea de cada pedido al hacer clic en él. Seguimos con información ficticia por ahora, ya que estamos haciendo solo el esqueleto.
+
+No crear PDF de salida como comprobante; no habrá.
+
+El botón de añadir albarán estará después de hacer clic en guardar modificaciones. Saldrá un pop-up para que se coloque o se arrastre el archivo; el fondo debe estar claramente deshabilitado. Incluye también un botón de volver.
+
+Quiero botones de búsqueda inteligentes en la pantalla de galería de pedidos y en la pantalla del pedido. En el desplegable de búsqueda quiero algo tematizado con color para diferentes categorías: artículos (en general, no hace falta poner eléctrico, mecánico, solo artículo), pedidos o código de artículo.
+
+Aparecerán con prioridad los pedidos parciales y pendientes; también se podrá filtrar mediante un botón. Los pedidos ya cerrados, que ya hayan sido totalmente entregados, quedarán habilitados pero con aspecto de finalizados, en gris, para diferenciarlos de los otros dos.
+
+Inserta el nombre del comprador en la información de los pedidos en la galería y también dentro de ellos.
+
+Para cada línea del pedido inserta una pequeña señal de aviso amarilla. Al hacer clic en ella saldrá un pop-up donde se reportarán las diferencias de esa línea en relación con el precio. Deja un aviso de que esa diferencia será enviada al comprador por correo electrónico y un botón de enviar.
+
+La cantidad de ítems de cada línea debe ser siempre la total, imposible de modificar; también tendrás que asumirla.
+
+El importe con y sin IVA debe aparecer también para cada pedido y dentro de él; sería la suma de todo. No hace falta hacerlo para cada línea.
